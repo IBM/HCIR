@@ -1,2 +1,2 @@
 # HCIR
-repository for the hybrid cloud infrastructure research team
+This repository contains the publically released artifacts by the Hybrid Cloud Infrastructure Research (HCIR) team @ IBM Research.
