@@ -1,7 +1,8 @@
 ## Overview
 
-Provisioning performant VMs with GPU Direct RoCE (GDR) requires changes in following layers of the stack: 1. Host BIOS, 2. Network Interface Controller, 3. Host Hypervisor, 4. Guest VM XML, 5. Guest OS, and 6. Communication Library Runtime.
+Provisioning performant VMs with GPU Direct RoCE (GDR) requires changes in following layers of the stack: 1. Host BIOS, 2. Network Interface Controller, 3. Host Hypervisor, 4. Guest VM XML, 5. Guest OS, and 6. Communication Library Runtime. 
 
+The following ![figure](https://github.com/apoorvemohan/HCIR/blob/main/vela_asplos2025/vmsetup/compute-topology.png) visualizes the topology of an NVIDIA HGX platform based server.
 
 ##### 1. Host BIOS: The following were testing on Intel IceLake and Cascade Lake systems:
 ```
