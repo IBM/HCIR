@@ -1,0 +1,6 @@
+[submodule "vela_asplos2025/ras"]
+	path = vela_asplos2025/ras
+	url = https://github.com/IBM/fuzz-testing.git
+[submodule "vela_asplos2025/pycommbench"]
+	path = vela_asplos2025/pycommbench
+	url = https://github.com/IBM/pytorch-communication-benchmarks

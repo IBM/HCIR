@@ -1,0 +1,261 @@
+<domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+  <name>optimized-a100-vm-i440fx</name>
+  <memory unit='KiB'>786432000</memory>
+  <currentMemory unit='KiB'>786432000</currentMemory>
+  <memoryBacking>
+    <hugepages>
+      <page size='1048576' unit='KiB'/>
+    </hugepages>
+  </memoryBacking>
+  <vcpu placement='static' cpuset='0-47'>48</vcpu>
+  <cputune>
+    <vcpupin vcpu='0' cpuset='0'/>
+    <vcpupin vcpu='1' cpuset='1'/>
+    <vcpupin vcpu='2' cpuset='2'/>
+    <vcpupin vcpu='3' cpuset='3'/>
+    <vcpupin vcpu='4' cpuset='4'/>
+    <vcpupin vcpu='5' cpuset='5'/>
+    <vcpupin vcpu='6' cpuset='6'/>
+    <vcpupin vcpu='7' cpuset='7'/>
+    <vcpupin vcpu='8' cpuset='8'/>
+    <vcpupin vcpu='9' cpuset='9'/>
+    <vcpupin vcpu='10' cpuset='10'/>
+    <vcpupin vcpu='11' cpuset='11'/>
+    <vcpupin vcpu='12' cpuset='12'/>
+    <vcpupin vcpu='13' cpuset='13'/>
+    <vcpupin vcpu='14' cpuset='14'/>
+    <vcpupin vcpu='15' cpuset='15'/>
+    <vcpupin vcpu='16' cpuset='16'/>
+    <vcpupin vcpu='17' cpuset='17'/>
+    <vcpupin vcpu='18' cpuset='18'/>
+    <vcpupin vcpu='19' cpuset='19'/>
+    <vcpupin vcpu='20' cpuset='20'/>
+    <vcpupin vcpu='21' cpuset='21'/>
+    <vcpupin vcpu='22' cpuset='22'/>
+    <vcpupin vcpu='23' cpuset='23'/>
+    <vcpupin vcpu='24' cpuset='24'/>
+    <vcpupin vcpu='25' cpuset='25'/>
+    <vcpupin vcpu='26' cpuset='26'/>
+    <vcpupin vcpu='27' cpuset='27'/>
+    <vcpupin vcpu='28' cpuset='28'/>
+    <vcpupin vcpu='29' cpuset='29'/>
+    <vcpupin vcpu='30' cpuset='30'/>
+    <vcpupin vcpu='31' cpuset='31'/>
+    <vcpupin vcpu='32' cpuset='32'/>
+    <vcpupin vcpu='33' cpuset='33'/>
+    <vcpupin vcpu='34' cpuset='34'/>
+    <vcpupin vcpu='35' cpuset='35'/>
+    <vcpupin vcpu='36' cpuset='36'/>
+    <vcpupin vcpu='37' cpuset='37'/>
+    <vcpupin vcpu='38' cpuset='38'/>
+    <vcpupin vcpu='39' cpuset='39'/>
+    <vcpupin vcpu='40' cpuset='40'/>
+    <vcpupin vcpu='41' cpuset='41'/>
+    <vcpupin vcpu='42' cpuset='42'/>
+    <vcpupin vcpu='43' cpuset='43'/>
+    <vcpupin vcpu='44' cpuset='44'/>
+    <vcpupin vcpu='45' cpuset='45'/>
+    <vcpupin vcpu='46' cpuset='46'/>
+    <vcpupin vcpu='47' cpuset='47'/>
+  </cputune>
+  <numatune>
+    <memory mode='strict' nodeset='0-1'/>
+    <memnode cellid='0' mode='strict' nodeset='0'/>
+    <memnode cellid='1' mode='strict' nodeset='1'/>
+  </numatune>
+  <resource>
+    <partition>/machine</partition>
+  </resource>
+  <os>
+    <type arch='x86_64' machine='pc-i440fx-focal-hpb'>hvm</type>
+    <boot dev='hd'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+  </features>
+  <cpu mode='host-model' check='partial'>
+    <feature policy='require' name='x2apic'/>
+    <feature policy='require' name='hypervisor'/>
+    <feature policy='require' name='lahf_lm'/>
+    <numa>
+      <cell id='0' cpus='0-23' memory='393216000' unit='KiB'/>
+      <cell id='1' cpus='24-47' memory='393216000' unit='KiB'/>
+    </numa>
+  </cpu>
+  <clock offset='utc'>
+    <timer name='rtc' tickpolicy='catchup'/>
+    <timer name='pit' tickpolicy='delay'/>
+    <timer name='hpet' present='no'/>
+  </clock>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+  <pm>
+    <suspend-to-mem enabled='no'/>
+    <suspend-to-disk enabled='no'/>
+  </pm>
+  <devices>
+    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='qcow2'/>
+      <source file='/var/lib/libvirt/images/optimized-a100-vm-i440fx.qcow2'/>
+      <target dev='vda' bus='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
+    </disk>
+    <controller type='usb' index='0' model='ich9-ehci1'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x7'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci1'>
+      <master startport='0'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci2'>
+      <master startport='2'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x1'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci3'>
+      <master startport='4'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x2'/>
+    </controller>
+    <controller type='sata' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x1f' function='0x2'/>
+    </controller>
+    <controller type='pci' index='0' model='pci-root'>
+      <driver ats='on'/>
+    </controller>
+    <controller type='pci' index='1' model='pci-expander-bus'>
+      <model name='pxb'/>
+      <target busNr='220'>
+        <node>0</node>
+      </target>
+      <driver ats='on'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
+    </controller>
+    <controller type='pci' index='2' model='pci-expander-bus'>
+      <model name='pxb'/>
+      <target busNr='140'>
+        <node>1</node>
+      </target>
+      <driver ats='on'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+    </controller>
+    <interface type='network'>
+      <mac address='52:54:49:84:d8:69'/>
+      <source network='public'/>
+      <model type='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x08' function='0x0'/>
+    </interface>
+    <serial type='pty'>
+      <target type='isa-serial' port='0'>
+        <model name='isa-serial'/>
+      </target>
+    </serial>
+    <console type='pty'>
+      <target type='serial' port='0'/>
+    </console>
+    <input type='tablet' bus='usb'>
+      <address type='usb' bus='0' port='1'/>
+    </input>
+    <input type='mouse' bus='ps2'/>
+    <input type='keyboard' bus='ps2'/>
+    <input type='mouse' bus='ps2'/>
+    <input type='keyboard' bus='ps2'/>
+    <graphics type='vnc' port='-1' autoport='yes' listen='localhost' keymap='en-us'>
+      <listen type='address' address='localhost'/>
+    </graphics>
+    <audio id='1' type='none'/>
+    <video>
+      <model type='cirrus' vram='16384' heads='1' primary='yes'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
+    </video>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
+      <source>
+        <address domain='0x0000' bus='0x3f' slot='0x00' function='0x2'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
+      <source>
+        <address domain='0x0000' bus='0x3f' slot='0x01' function='0x2'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x01' slot='0x02' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
+      <source>
+        <address domain='0x0000' bus='0x93' slot='0x00' function='0x2'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x02' slot='0x00' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
+      <source>
+        <address domain='0x0000' bus='0x93' slot='0x01' function='0x2'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x02' slot='0x02' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
+      <source>
+        <address domain='0x0000' bus='0x48' slot='0x00' function='0x0'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x01' slot='0x04' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
+      <source>
+        <address domain='0x0000' bus='0x8c' slot='0x00' function='0x0'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x02' slot='0x04' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
+      <source>
+        <address domain='0x0000' bus='0xb7' slot='0x00' function='0x0'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x01' slot='0x06' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
+      <source>
+        <address domain='0x0000' bus='0xb8' slot='0x00' function='0x0'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x01' slot='0x08' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
+      <source>
+        <address domain='0x0000' bus='0xb9' slot='0x00' function='0x0'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x01' slot='0x0a' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
+      <source>
+        <address domain='0x0000' bus='0xba' slot='0x00' function='0x0'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x01' slot='0x0c' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
+      <source>
+        <address domain='0x0000' bus='0xbb' slot='0x00' function='0x0'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x01' slot='0x0e' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
+      <source>
+        <address domain='0x0000' bus='0xbc' slot='0x00' function='0x0'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x01' slot='0x10' function='0x0'/>
+    </hostdev>
+    <memballoon model='none'/>
+  </devices>
+  <qemu:commandline>
+    <qemu:env name='DEPLOYER' value='net20'/>
+  </qemu:commandline>
+</domain>
