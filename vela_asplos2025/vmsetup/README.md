@@ -3,12 +3,12 @@
 Provisioning performant VMs with GPU Direct RoCE (GDR) requires changes in following layers of the stack: 1. Host BIOS, 2. Network Interface Controller, 3. Host Hypervisor, 4. Guest VM XML, 5. Guest OS, and 6. Communication Library Runtime.
 
 
-### 1. Host BIOS: The following were testing on Intel IceLake and Cascade Lake systems:
+##### 1. Host BIOS: The following were testing on Intel IceLake and Cascade Lake systems:
 ```
 Enable VMX, IOMMU, 4k PCIe MaxReadRequest in BIOS.
 ```
 
-### 2. Network Interface Controller: The following fields and resprected values are critcal to achieve desired GPU Direct RoCE performance from within the A100 VMs (tested with ConnectX-6 ethernet variant type of cards - requires 2 reboots).
+##### 2. Network Interface Controller: The following fields and resprected values are critcal to achieve desired GPU Direct RoCE performance from within the A100 VMs (tested with ConnectX-6 ethernet variant type of cards - requires 2 reboots).
 ```
 ADVANCED_PCI_SETTINGS               True(1) # A reboot is required after enabling ADVANCED_PCI_SETTINGS
 MAX_ACC_OUT_READ                    44
@@ -19,7 +19,7 @@ ADVANCED_PCI_SETTINGS               True(1)
 RDMA_SELECTIVE_REPEAT_EN            True(1)	# Another reboot is required to make all changes take effect
 ```
 
-### 3. Host Hypervisor: The following were testing with Linux Kernel 5.15.
+##### 3. Host Hypervisor: The following were testing with Linux Kernel 5.15.
 ```
 3a. Kernel Command Line Parameters:
 
@@ -35,7 +35,7 @@ Enable Address Translation Services (ATS): setpci -s <pci address> ECAP_ATS+6.w=
 Configure MaxReadReq to 4K: setpci -s <pci address> 68.w=5930
 ```
 	
-### 4. Guest VM XML: Attached sample files for details (sample-optimized-a100-vm-i440fx.xml and sample-optimized-a100-vm-q35.xml).
+##### 4. Guest VM XML: Attached sample files for details (sample-optimized-a100-vm-i440fx.xml and sample-optimized-a100-vm-q35.xml).
 ```
 4a. Add "<driver ats='on'/>" to PCI controllers.
 
@@ -67,7 +67,7 @@ Configure MaxReadReq to 4K: setpci -s <pci address> 68.w=5930
 4d. Attach devices to the correct NUMA node.
 ```
 
-### 5. Guest OS: The following network configurations inside the guest os are important.
+##### 5. Guest OS: The following network configurations inside the guest os are important.
 ```
 5a. Network Interface Parameters:
 
@@ -113,7 +113,7 @@ do
 done
 ```
 
-### 6. Communication Library Runtime: When using Nvidia-based network infrastructure, it is critical to configure Nvidia's Collective Communication Library to achive optimal perforance for GDR.
+##### 6. Communication Library Runtime: When using Nvidia-based network infrastructure, it is critical to configure Nvidia's Collective Communication Library to achive optimal perforance for GDR.
 ```
 6a. NCCL Environment Variables:
 
